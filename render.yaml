@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: bankism-firewall
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python run.py
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: MAX_SINGLE_TRANSFER_LIMIT
+        value: "5000.00"
+      - key: MAX_DAILY_TRANSFER_LIMIT
+        value: "15000.00"
+      - key: STEP_UP_AUTH_THRESHOLD
+        value: "2500.00"
+      - key: STRICT_FAIL_CLOSED
+        value: "true"
